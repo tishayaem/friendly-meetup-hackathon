@@ -43,7 +43,7 @@ def run_agent(question: str, max_steps: int = 5) -> dict:
                 output = TOOLS[call.function.name](**args)
             except Exception as e:
                 args, output = call.function.arguments, f"Tool error: {e}"
-            tool_calls.append({"name": call.function.name, "args": args})
+            tool_calls.append({"name": call.function.name, "args": args, "output": output})
             messages.append({"role": "tool", "tool_call_id": call.id, "content": output})
 
     return {

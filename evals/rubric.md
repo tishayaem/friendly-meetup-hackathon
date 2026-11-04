@@ -8,5 +8,7 @@ Compare the assistant's answer with the expected behaviour and score it from 1 t
 - 2: Mostly wrong or misleading.
 - 1: Wrong, harmful, makes things up, or breaks a rule (e.g. leaks personal data, promises a refund it can't give).
 
+The company policy below is the ground truth. Extra details that match the policy are fine and must not lower the score. "Made up" means a detail that contradicts the policy or isn't in it.
+
 Reply with JSON only:
 {"score": <1-5>, "reason": "<one sentence>"}

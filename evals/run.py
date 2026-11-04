@@ -2,6 +2,7 @@
 
   uv run python -m evals.run --label baseline
   uv run python -m evals.run --only late-refund    # one case
+  uv run python -m evals.run --tag rule:cut-off    # one policy rule's suite
   uv run python -m evals.run --no-judge            # checks only (faster)
 """
 
@@ -86,12 +87,15 @@ def main() -> None:
     parser.add_argument("--label", default="run", help="name for this run, e.g. baseline")
     parser.add_argument("--cases", default=ROOT / "evals" / "cases.jsonl", type=Path)
     parser.add_argument("--only", help="run a single case by id")
+    parser.add_argument("--tag", help="run only cases with this tag, e.g. rule:cut-off")
     parser.add_argument("--no-judge", action="store_true")
     args = parser.parse_args()
 
     cases = [json.loads(line) for line in args.cases.read_text().splitlines() if line.strip()]
     if args.only:
         cases = [c for c in cases if c["id"] == args.only]
+    if args.tag:
+        cases = [c for c in cases if args.tag in c.get("tags", [])]
 
     rows = []
     for case in cases:
