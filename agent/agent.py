@@ -27,7 +27,7 @@ def run_agent(question: str, max_steps: int = 5) -> dict:
 
     for _ in range(max_steps):
         response = client.chat.completions.create(
-            model=model, messages=messages, tools=TOOL_SCHEMAS, temperature=0
+            model=model, messages=messages, tools=TOOL_SCHEMAS
         )
         tokens += response.usage.total_tokens if response.usage else 0
         message = response.choices[0].message
