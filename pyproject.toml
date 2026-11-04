@@ -9,8 +9,13 @@ dependencies = [
 ]
 
 [dependency-groups]
+dev = ["pytest>=8"]
 # Stretch goal only: uv sync --group tracing
 tracing = [
     "arize-phoenix-otel",
     "openinference-instrumentation-openai",
 ]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

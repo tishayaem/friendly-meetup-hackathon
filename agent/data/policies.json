@@ -1,0 +1,299 @@
+[
+  {
+    "id": "pricing",
+    "version": 1,
+    "topic": "pricing",
+    "text": "| Service | Delivery time | Price (up to 2 kg) |\n|---|---|---|\n| Standard | 3–5 working days | £3.95 |\n| Next Day | Next working day | £6.50 |\n| Same Day (London only) |  By 9pm on the day the order is processed. Orders received by 11am on a working day are processed that day; orders received after 11am or on a non-working day are processed the next working day. | £12.00 |\n\nParcels over 2 kg cost an extra £1.50 per kg. The maximum weight is 20 kg.",
+    "aliases": [
+      "delivery services and prices"
+    ],
+    "active": true,
+    "tests": []
+  },
+  {
+    "id": "cutoffs",
+    "version": 1,
+    "topic": "cutoffs",
+    "text": "- Next Day: order by 4pm on a working day.\n- Same Day: order by 11am, London postcodes only.\n- Orders after the cut-off are processed the next working day.",
+    "aliases": [
+      "order cut-off times"
+    ],
+    "active": true,
+    "tests": []
+  },
+  {
+    "id": "calendar",
+    "version": 1,
+    "topic": "calendar",
+    "text": "Working days are Monday to Friday, excluding UK bank holidays. We do not deliver on Sundays.",
+    "aliases": [
+      "working days"
+    ],
+    "active": true,
+    "tests": []
+  },
+  {
+    "id": "refunds",
+    "version": 1,
+    "topic": "refunds",
+    "text": "- If a Next Day or Same Day parcel arrives late, we refund the delivery fee in full.\n- Standard parcels are only eligible for a refund if they arrive more than 2 working days late.\n- We never refund the value of the item itself for late delivery.\n- Refunds are processed within 5 working days to the original payment method.\n- Support assistants cannot issue refunds directly. Customers must submit a claim at parcelpigeon.example/claims.",
+    "aliases": [
+      "late deliveries and refunds"
+    ],
+    "active": true,
+    "tests": []
+  },
+  {
+    "id": "compensation",
+    "version": 1,
+    "topic": "compensation",
+    "text": "- Report a lost parcel within 28 days of the expected delivery date.\n- Report damage within 7 days of delivery, with photos.\n- Compensation is capped at £50 per parcel unless the customer bought Pigeon Protect cover.",
+    "aliases": [
+      "lost or damaged parcels"
+    ],
+    "active": true,
+    "tests": []
+  },
+  {
+    "id": "cover",
+    "version": 1,
+    "topic": "cover",
+    "text": "Pigeon Protect raises compensation to the declared value, up to £500. It costs £2.50 per parcel and must be added at checkout. It cannot be added after a parcel has been sent.",
+    "aliases": [
+      "pigeon protect cover"
+    ],
+    "active": true,
+    "tests": []
+  },
+  {
+    "id": "address_change",
+    "version": 1,
+    "topic": "address_change",
+    "text": "The address can be changed until the parcel status is \"out for delivery\". After that, it cannot be changed.",
+    "aliases": [
+      "changing a delivery address"
+    ],
+    "active": true,
+    "tests": []
+  },
+  {
+    "id": "privacy",
+    "version": 1,
+    "topic": "privacy",
+    "text": "We only share order details with the person who placed the order. Support assistants must not reveal a customer's name, address or phone number.",
+    "aliases": [
+      "privacy"
+    ],
+    "active": true,
+    "tests": []
+  },
+  {
+    "id": "contact",
+    "version": 1,
+    "topic": "contact",
+    "text": "Customer support is open Monday to Saturday, 8am to 8pm. Email: help@parcelpigeon.example",
+    "aliases": [
+      "contact"
+    ],
+    "active": true,
+    "tests": []
+  },
+  {
+    "id": "prohibited-cash",
+    "version": 1,
+    "topic": "prohibited_items",
+    "text": "Cash is prohibited.",
+    "aliases": [
+      "cash",
+      "banknotes",
+      "bank notes",
+      "currency"
+    ],
+    "active": true,
+    "rule": {
+      "outcome": "prohibited"
+    },
+    "tests": [
+      {
+        "query": "Can I send cash?",
+        "facts": {},
+        "expected": "prohibited"
+      },
+      {
+        "query": "Can I ship banknotes?",
+        "facts": {},
+        "expected": "prohibited"
+      }
+    ]
+  },
+  {
+    "id": "prohibited-perfume",
+    "version": 1,
+    "topic": "prohibited_items",
+    "text": "Perfume over 100 ml is prohibited.",
+    "aliases": [
+      "perfume",
+      "cologne",
+      "fragrance",
+      "eau de parfum"
+    ],
+    "active": true,
+    "rule": {
+      "required": [
+        "volume_ml"
+      ],
+      "conditions": [
+        {
+          "field": "volume_ml",
+          "op": "gt",
+          "value": 100
+        }
+      ],
+      "outcome": "prohibited"
+    },
+    "tests": [
+      {
+        "query": "Can I send cologne?",
+        "facts": {},
+        "expected": "needs_information"
+      },
+      {
+        "query": "Can I send 99 ml perfume?",
+        "facts": {
+          "volume_ml": 99
+        },
+        "expected": "not_prohibited_by_rule"
+      },
+      {
+        "query": "Can I send 100 ml perfume?",
+        "facts": {
+          "volume_ml": 100
+        },
+        "expected": "not_prohibited_by_rule"
+      },
+      {
+        "query": "Can I send 101 ml perfume?",
+        "facts": {
+          "volume_ml": 101
+        },
+        "expected": "prohibited"
+      },
+      {
+        "query": "Can I send 150 ml perfume?",
+        "facts": {
+          "volume_ml": 150
+        },
+        "expected": "prohibited"
+      }
+    ]
+  },
+  {
+    "id": "prohibited-batteries",
+    "version": 1,
+    "topic": "prohibited_items",
+    "text": "Lithium batteries sent on their own are prohibited.",
+    "aliases": [
+      "lithium battery",
+      "lithium batteries"
+    ],
+    "active": true,
+    "rule": {
+      "required": [
+        "standalone"
+      ],
+      "conditions": [
+        {
+          "field": "standalone",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "outcome": "prohibited"
+    },
+    "tests": [
+      {
+        "query": "Can I send lithium batteries?",
+        "facts": {},
+        "expected": "needs_information"
+      },
+      {
+        "query": "Lithium battery in a laptop",
+        "facts": {
+          "standalone": false
+        },
+        "expected": "not_prohibited_by_rule"
+      },
+      {
+        "query": "Standalone lithium battery",
+        "facts": {
+          "standalone": true
+        },
+        "expected": "prohibited"
+      }
+    ]
+  },
+  {
+    "id": "prohibited-aerosols",
+    "version": 1,
+    "topic": "prohibited_items",
+    "text": "Aerosols are prohibited.",
+    "aliases": [
+      "aerosol",
+      "aerosols",
+      "spray can"
+    ],
+    "active": true,
+    "rule": {
+      "outcome": "prohibited"
+    },
+    "tests": [
+      {
+        "query": "Can I ship an aerosol?",
+        "facts": {},
+        "expected": "prohibited"
+      }
+    ]
+  },
+  {
+    "id": "prohibited-animals",
+    "version": 1,
+    "topic": "prohibited_items",
+    "text": "Live animals are prohibited.",
+    "aliases": [
+      "live animals",
+      "live animal"
+    ],
+    "active": true,
+    "rule": {
+      "outcome": "prohibited"
+    },
+    "tests": [
+      {
+        "query": "Can I ship live animals?",
+        "facts": {},
+        "expected": "prohibited"
+      }
+    ]
+  },
+  {
+    "id": "prohibited-illegal",
+    "version": 1,
+    "topic": "prohibited_items",
+    "text": "Anything illegal is prohibited.",
+    "aliases": [
+      "illegal goods",
+      "illegal items"
+    ],
+    "active": true,
+    "rule": {
+      "outcome": "prohibited"
+    },
+    "tests": [
+      {
+        "query": "Can I send illegal items?",
+        "facts": {},
+        "expected": "prohibited"
+      }
+    ]
+  }
+]

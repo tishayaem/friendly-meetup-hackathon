@@ -2,3 +2,5 @@
 .venv/
 __pycache__/
 results/*.jsonl
+.cache/
+.pytest_cache/

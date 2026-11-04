@@ -6,7 +6,7 @@
 |---|---|---|
 | Standard | 3–5 working days | £3.95 |
 | Next Day | Next working day | £6.50 |
-| Same Day (London only) | Same day, by 9pm | £12.00 |
+| Same Day (London only) | ~~Same day, by 9pm~~ By 9pm on the day the order is processed. Orders received by 11am on a working day are processed that day; orders received after 11am or on a non-working day are processed the next working day. | £12.00 |
 
 Parcels over 2 kg cost an extra £1.50 per kg. The maximum weight is 20 kg.
 

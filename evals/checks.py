@@ -18,8 +18,23 @@ def not_contains(result: dict, value: str) -> bool:
 
 
 def tool_called(result: dict, value: str) -> bool | None:
-    # TODO (Level 2): return True if the agent called the tool named `value`.
-    return None
+    return any(t['name'] == value and t.get('status', 'succeeded') == 'succeeded' for t in result['tool_calls'])
+
+
+def tool_called_with(result, value):
+    return any(t['name'] == value['name'] and t['args'] == value['args'] and t.get('status','succeeded') == 'succeeded' for t in result['tool_calls'])
+
+
+def outcome(result, value):
+    return result.get('outcome') == value
+
+
+def no_tool(result, value):
+    return not any(t['name'] == value and t.get('status','succeeded') == 'succeeded' for t in result['tool_calls'])
+
+
+def retrieved(result, value):
+    return set(value) <= set(result.get('policy_ids', []))
 
 
 # TODO (Level 2): add your own checks here, then register them below. Ideas:
@@ -34,4 +49,8 @@ CHECKS = {
     "contains": contains,
     "not_contains": not_contains,
     "tool_called": tool_called,
+    "tool_called_with": tool_called_with,
+    "outcome": outcome,
+    "no_tool": no_tool,
+    "retrieved": retrieved,
 }

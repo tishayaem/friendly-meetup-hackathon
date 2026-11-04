@@ -3,6 +3,8 @@
 > **Parcel Pigeon's** AI support bot goes live next week.
 > Your job: prove whether it's ready, with evidence instead of vibes.
 
+**Running the implemented version on a teammate's computer? Start with [the teammate setup and demo guide](README-TEAMMATE.md)** for dependencies, local/hosted models, configuration, tests, semantic search and demo steps. The workshop instructions below describe the original starter exercise.
+
 ## 🎯 What you'll build
 
 - A **test set** of customer questions
@@ -114,3 +116,9 @@ results/                saved runs (one file per run)
 | Too slow | `--only <case-id>`, `--no-judge`, or a hosted model |
 | Model ignores tools | Normal for small models! That's a finding: put it in a test. |
 | Anything else | Grab an organiser 🙋 |
+
+## Policy controller and evaluation demo
+
+The new runtime, policy catalogue, verification demo and stage tests are documented in [docs/testing-demo.md](docs/testing-demo.md). Start with `uv run pytest -q`, `uv run python -m agent.policies`, and `uv run python -m evals.stages`. Live model runs require the three model roles in `.env`.
+
+The proposed [model scorecard and policy-growth A/B experiment](docs/evaluation-benchmark.md) defines success criteria, metrics, synthetic policy additions and the remaining work for a fair full-context comparison.

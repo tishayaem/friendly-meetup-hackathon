@@ -1,0 +1,116 @@
+[
+  {
+    "id": "demo-art-ink",
+    "version": 1,
+    "topic": "prohibited_items",
+    "active": true,
+    "text": "FICTIONAL BENCHMARK RULE: synthetic art ink over 30 ml is prohibited.",
+    "aliases": [
+      "synthetic art ink",
+      "artist ink",
+      "illustration ink"
+    ],
+    "rule": {
+      "outcome": "prohibited",
+      "required": [
+        "volume_ml"
+      ],
+      "conditions": [
+        {
+          "field": "volume_ml",
+          "op": "gt",
+          "value": 30
+        }
+      ]
+    },
+    "tests": [
+      {
+        "query": "Can I send synthetic art ink?",
+        "facts": {},
+        "expected": "needs_information"
+      },
+      {
+        "query": "Can I send 30 ml synthetic art ink?",
+        "facts": {
+          "volume_ml": 30
+        },
+        "expected": "not_prohibited_by_rule"
+      },
+      {
+        "query": "Can I send 31 ml synthetic art ink?",
+        "facts": {
+          "volume_ml": 31
+        },
+        "expected": "prohibited"
+      }
+    ]
+  },
+  {
+    "id": "demo-fabric-dye",
+    "version": 1,
+    "topic": "prohibited_items",
+    "active": true,
+    "text": "FICTIONAL BENCHMARK RULE: synthetic fabric dye over 50 ml is prohibited.",
+    "aliases": [
+      "synthetic fabric dye",
+      "textile dye",
+      "cloth dye"
+    ],
+    "rule": {
+      "outcome": "prohibited",
+      "required": [
+        "volume_ml"
+      ],
+      "conditions": [
+        {
+          "field": "volume_ml",
+          "op": "gt",
+          "value": 50
+        }
+      ]
+    },
+    "tests": [
+      {
+        "query": "Can I send synthetic fabric dye?",
+        "facts": {},
+        "expected": "needs_information"
+      },
+      {
+        "query": "Can I send 50 ml synthetic fabric dye?",
+        "facts": {
+          "volume_ml": 50
+        },
+        "expected": "not_prohibited_by_rule"
+      },
+      {
+        "query": "Can I send 51 ml synthetic fabric dye?",
+        "facts": {
+          "volume_ml": 51
+        },
+        "expected": "prohibited"
+      }
+    ]
+  },
+  {
+    "id": "demo-sample-token",
+    "version": 1,
+    "topic": "prohibited_items",
+    "active": true,
+    "text": "FICTIONAL BENCHMARK RULE: synthetic sample tokens is prohibited.",
+    "aliases": [
+      "synthetic sample tokens",
+      "sample token",
+      "test token"
+    ],
+    "rule": {
+      "outcome": "prohibited"
+    },
+    "tests": [
+      {
+        "query": "Can I send synthetic sample tokens?",
+        "facts": {},
+        "expected": "prohibited"
+      }
+    ]
+  }
+]
